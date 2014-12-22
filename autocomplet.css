@@ -1,0 +1,29 @@
+.ui-autocomplete { position: absolute; cursor: default; }	
+.ui-menu { /* Menu affiché*/
+	list-style:none;
+
+	float: right;
+	z-index:3;
+	background-color : orange;
+}
+
+.ui-menu .ui-menu-item { /* Item du menu */
+	margin:0;
+	padding: 0;
+	zoom: 1;
+	float: left;
+	clear: left;
+
+}
+
+.ui-menu .ui-menu-item a {
+	text-decoration:none;
+	line-height:1.5;
+	color : green;
+
+}
+.ui-menu .ui-menu-item a.ui-state-hover,.ui-menu .ui-menu-item a.ui-state-active {
+	margin: -1px;
+	color : red;
+}
+

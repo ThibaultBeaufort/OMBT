@@ -1,0 +1,204 @@
+
+@font-face {
+  font-family: "HelveticaNeueThin";
+	src: url('font/HelvNeue35.ttf');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+  font-family: "HelveticaNeueLight";
+	src: url('font/HelvNeue45.ttf');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+  font-family: "HelveticaNeueRoman";
+	src: url('font/HelvNeue55.ttf');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+  font-family: "HelveticaNeueMediumn";
+	src: url('font/HelvNeue65.ttf');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+  font-family: "HelveticaNeueBold";
+	src: url('font/HelvNeue75.ttf');
+	font-weight: normal;
+	font-style: normal;
+}
+table{
+  min-width:80%;
+  max-width : 80%;
+    width:80%;
+
+  margin : auto;
+  
+}
+html {
+          height: 100%;
+		  width:100%;
+}
+body{
+  margin : 0;
+  height : 100%;
+  width : 100%;
+font-family:"HelveticaNeueThin";
+}
+header{
+height : 48px;
+width : 1098px;
+padding : 10px;
+  display:table;
+}
+header #logo{
+display: table-cell;
+width : 48px;
+vertical-align : top;
+float:left;
+}
+header #banniere{
+display: table-cell;
+width :700px;
+height : 48px;
+text-align:center;
+float:left;
+}
+header #banniere h1{
+margin : 0;
+padding : 0;
+}
+header #form-banniere{
+display: table-cell;
+height : 48px;
+width : 350px;
+text-align:center;
+
+float:right; 
+}
+
+.tabs input[type=radio] { /* Supprime le radio */
+  display:none;
+}
+hr{
+color : orange;
+}
+.tabs {
+width: 100%;
+float: none;
+list-style: none;
+position: relative;
+padding: 0;
+margin: 0;
+text-align:center;
+}
+.tabs li{ /* onglets alignés */
+float: left;
+width : 25%;
+width:300px;
+}
+.tabs label { /* Design onglet */
+  display: block;
+  cursor: pointer;
+  position: relative;
+  top: 3px;
+  color : rgba(255,102,0,0.5);
+
+}
+.tabs label:hover { /* Onglet survolé */
+background: rgba(255,255,255,0.5);
+top: 0;
+}
+[id^=tab]:checked + label { /*Onglet actif*/
+background : white;
+color: rgba(105,140,150,1);
+top: 0;
+}
+
+[id^=tab]:checked ~ [id^=tab-content] { /*Affiche le bloc actif*/
+  display: block;
+}
+.tab-content{ /* design du bloc actif*/
+z-index: 2;
+display: none;
+text-align: left;
+width: 100%;
+line-height: 140%;
+padding-top: 10px;
+background: rgba(150,150,150,0.5);
+color: white;
+position: absolute;
+top: 53px;
+left: 0;
+box-sizing: border-box;
+}
+
+/* Autocomplétion NRA/boucle*/
+.ui-autocomplete { position: absolute; cursor: default; }	
+.ui-menu { /* Menu affiché*/
+	list-style:none;
+
+	float: right;
+	z-index:3;
+	background-color : orange;
+}
+
+.ui-menu .ui-menu-item { /* Item du menu */
+	margin:0;
+	padding: 0;
+	zoom: 1;
+	float: left;
+	clear: left;
+
+}
+
+.ui-menu .ui-menu-item a {
+	text-decoration:none;
+	line-height:1.5;
+	color : green;
+
+}
+.ui-menu .ui-menu-item a.ui-state-hover,.ui-menu .ui-menu-item a.ui-state-active {
+	margin: -1px;
+	color : red;
+}
+/*NEw Css*/
+
+
+input.text { 
+margin-bottom:12px; width:95%; padding: .4em; 
+}
+
+fieldset { 
+padding:0; border:0; margin-top:25px; 
+}
+div#users-contain { 
+font-size: 62.5%; 
+}
+
+div#users-contain { 
+width: 49%; margin: 0 0; height: 100%; float:left;
+}
+
+div#users-contain table { 
+margin: 1em 0; border-collapse: collapse; width: 100%; 
+}
+
+div#users-contain table td, div#users-contain table th { 
+border: 1px solid #eee; padding: .6em 10px; text-align: left; 
+}
+
+.ui-dialog .ui-state-error { 
+padding: .3em; 
+}
+
+.validateTips { 
+border: 1px solid transparent; padding: 0.3em; 
+}
+
+div#commentaire {
+margin: 0 0; 
+}
+
