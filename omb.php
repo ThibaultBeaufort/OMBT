@@ -1,6 +1,6 @@
 <html>
 	<head>
-		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
 		<meta http-equiv="X-UA-Compatible" content="chrome=1" />
 		<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css"/>
 		<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
@@ -9,7 +9,8 @@
 		<script src="princeFilter.JQuery.js"></script>
 		<script src="jquery.dataTables.min.js"></script>
 		<link rel="stylesheet" href="design.css"/>
-		<link rel="stylesheet" href="//cdn.datatables.net/1.10.4/css/jquery.dataTables.min.css"/>
+		
+<script type="text/javascript" src="tablecloth.js"></script>
 	</head>
 	<body>
 		<?php
@@ -37,20 +38,22 @@
 				?>
 			</header>
 			<hr/>
-			<section>
+			<section class="menutabs">
 				<ul class="tabs">
 					<li>
-						<input type="radio" checked name="tabs" id="tab1">
-						<label for="tab1">Accueil</label>
+						<input type="radio" checked name="tabs" id="tab1"/>
+						<label for="tab1">Accueil</label>									
+						<hr/>
 						<div id="tab-content1" class="tab-content animated fadeIn">
-							<!-- Contenu de l'onglet  -->
+	<!-- Contenu de l'onglet  -->
 							<?php include_once('accueil.php');?>
 						</div>
 					</li>
 					<li>
 						<input type="radio" name="tabs" id="tab2">
 						<label for="tab2">PSDR</label>
-						<div id="tab-content2" class="tab-content animated fadeIn">
+						<hr/>
+						<div id="tab-content2" class="tab-content animated fadeIn"/>
 							<!-- Contenu de l'onglet  -->
 							<?php include_once('psdr.php');?>
 						</div>
@@ -58,15 +61,18 @@
 					<li>
 						<input type="radio" name="tabs" id="tab3">
 						<label for="tab3">Budget</label>
-						<div id="tab-content3" class="tab-content animated fadeIn">
+						<hr/>
+						<div id="tab-content3" class="tab-content animated fadeIn"/>
 							<!-- Contenu de l'onglet  -->
 						</div>
 					</li>
 					<li>
 						<input type="radio" name="tabs" id="tab4">
 						<label for="tab4">Historique</label>
-						<div id="tab-content4" class="tab-content animated fadeIn">
+						<hr/>
+						<div id="tab-content4" class="tab-content animated fadeIn"/>
 							<!-- Contenu de l'onglet  -->		
+							<?php include_once('historique.php'); ?>
 						</div>
 					</li>
 				</ul>

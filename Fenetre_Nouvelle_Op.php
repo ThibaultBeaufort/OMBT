@@ -1,7 +1,10 @@
 <!--    //////////     Fenetre  formulaire ajout op trans ////////////    -->	
 <div id="dialog-form"  title="Creation nouvelle Operation">
 
-	<?php $nra=$_GET['nra'];?>
+	<?php 
+	
+	if(isset($_GET['nra'])){
+	$nra=$_GET['nra'];?>
 	<form>
 			<label for="name">Operation</label>
 			<select name="Operation" id="liste_op" onChange="find_op(this.value)">
@@ -23,8 +26,11 @@
 				<input type="text" name="Cout" id="Cout_FO" class="text ui-widget-content ui-corner-all"/>
 				<label for="Date">Date</label>
 				<input type="Date" name="Date" id="Date_FO" class="text ui-widget-content ui-corner-all DateFO"/>
+				<label for="Op_lie">Opération liée</label>
+				<input type="text" name="Op_lie" id="Op_lie" class="text ui-widget-content ui-corner-all" />
+				<label for="op_declencheuse">Opération déclencheur</label>
+				<input type="text" name="op_declencheuse" id="op_declencheuse" class="text ui-widget-content ui-corner-all" />				
 				<!-- Allow form submission with keyboard without duplicating the dialog button -->
-				<input type="submit" tabindex="-1" style="position:absolute; top:-1000px"/>
 			</div>			
 			<div id="form_FH">
 				<label for="NomFH">Nom FH</label>
@@ -39,8 +45,12 @@
 				<input type="text" name="Cout" id="Cout_FH" class="text ui-widget-content ui-corner-all"/>
 				<label for="Date">Date</label>
 				<input type="Date" name="Date" id="Date_FH" class="text ui-widget-content ui-corner-all DateFH"/>
+				<label for="Op_lie">Opération liée</label>
+				<input type="text" name="Op_lie" id="Op_lie" class="text ui-widget-content ui-corner-all" />
+				<label for="op_declencheuse">Opération déclencheur</label>
+				<input type="text" name="op_declencheuse" id="op_declencheuse" class="text ui-widget-content ui-corner-all" />
 				<!-- Allow form submission with keyboard without duplicating the dialog button -->
-				<input type="submit" tabindex="-1" style="position:absolute; top:-1000px"/>			</div>			
+			</div>
 			<div id="form_WDM">
 				<label for="NomWDM">Nom WDM</label>
 				<input type="text" name="NomWDM" id="NomWDM" onChange="find_caract_WDM(this.value)" class="text ui-widget-content ui-corner-all"/>
@@ -56,13 +66,15 @@
 				<input type="text" name="Cout" id="Cout_WDM" class="text ui-widget-content ui-corner-all"/>
 				<label for="Date">Date</label>
 				<input type="Date" name="Date" id="Date_WDM" class="text ui-widget-content ui-corner-all DateWDM"/>
+				<label for="Op_lie">Opération liée</label>
+				<input type="text" name="Op_lie" id="Op_lie" class="text ui-widget-content ui-corner-all" />
+				<label for="op_declencheuse">Opération déclencheur</label>
+				<input type="text" name="op_declencheuse" id="op_declencheuse" class="text ui-widget-content ui-corner-all" />
 				<!-- Allow form submission with keyboard without duplicating the dialog button -->
-				<input type="submit" tabindex="-1" style="position:absolute; top:-1000px"/>			</div>
-			
+			</div>
+
 
 	</form>
 
 </div>
-<script>
-
-</script>
+<?php } ?>

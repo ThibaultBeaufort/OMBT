@@ -15,7 +15,7 @@ $nbligne = mysqli_num_rows($requete);
 
 <form id="liste_tri">
 	<select name="DR" id="liste_dr" onChange="find_dr(this.value)">
-		<option selected="selected">DR</option>
+		<option selected="selected" disabled="disabled" >DR</option>
 		<option value="B2" >B2</option>
 		<option value="K2">K2</option>
 		<option value="T1">T1</option>
@@ -102,6 +102,7 @@ function find_boucle(value){
 			success:function(data){
 				document.getElementById('test').innerHTML = data;
 				$('#tbl_MytableID').princeFilter();
+
 			}
 		});
 	});
@@ -124,23 +125,24 @@ function find_dr(value){
 	return(value);	
 }			
 function find_op(value){
- if (value == 'FO'){
-  $("#form_FO").show();
-  $("#form_FH").hide();
-  $("#form_WDM").hide(); 
+	if (value == 'FO'){
+		$("#form_FO").show();
+		$("#form_FH").hide();
+		$("#form_WDM").hide();
 
- }
- else if (value == 'FH'){
-  $("#form_FH").show();
-  $("#form_FO").hide();
-  $("#form_WDM").hide();
- }
- else if (value == 'WDM'){
-  $("#form_WDM").show(); 
-  $("#form_FO").hide();
-  $("#form_FH").hide();
- }
-}  
+	}
+	else if (value == 'FH'){
+		$("#form_FH").show();
+		$("#form_FO").hide();
+		$("#form_WDM").hide();
+	}
+	else if (value == 'WDM'){
+		$("#form_WDM").show();	
+		$("#form_FO").hide();
+		$("#form_FH").hide();
+	}
+}		
 
+					
 
 </script>

@@ -37,7 +37,7 @@ for(j=jEntete; j<nbRows; j++){
 		{
 		case 'EnteteTab':
 			
-			cellule.style.backgroundColor = 'red';
+			// cellule.style.backgroundColor = 'red';
 
 
         break;
@@ -46,7 +46,7 @@ for(j=jEntete; j<nbRows; j++){
 		
 			if (i==3){
 				
-				cellule.style.backgroundColor = 'blue';
+				// cellule.style.backgroundColor = 'blue';
 			
 				cellule.id = "NRA-"+j;
 				cellule.onclick = function(){LeftPartClick(this)};
@@ -56,7 +56,7 @@ for(j=jEntete; j<nbRows; j++){
 			}
 			else{
 			
-				cellule.style.backgroundColor = 'blue';
+				// cellule.style.backgroundColor = 'blue';
 			
 				cellule.id = ""+j+"-"+i;
 				cellule.onclick = function(){LeftPartClick(this)};
@@ -67,7 +67,7 @@ for(j=jEntete; j<nbRows; j++){
 		
 		case 'TabDroite':
 		
-			cellule.style.backgroundColor = 'green';
+			// cellule.style.backgroundColor = 'green';
 			
 			cellule.id = ""+j+"-"+i;
 			cellule.ondblclick = function(){RightPartDbClick(this)};
@@ -171,7 +171,7 @@ function RightPartDbClick(monid)
    
 		   
 			//On change OMAR
-      document.getElementById('OMAR').onchange = function(){
+		document.getElementById('OMAR').onchange = function(){
 		
 		var Valeur = document.getElementById('OMAR').value;
 		
@@ -257,31 +257,26 @@ function LeftPartClick(monid)
 						$( "#fenetre_nra" ).dialog( "open" );
 						 
 						 
-						 document.getElementById('create-user').onclick = function(){OuvertureFentreFormulaire(this)};
+						 document.getElementById('create-user').onclick = function(){OuvertureFentreFormulaire(CodeNRA)};
 					
 
 						////////////////Param Tableau ////////////////////////////OuvertureFentreFormulaire
 
 						var TabOP = document.getElementsByClassName("TabNRA");
 						var ligneTab = TabOP.length;
+						var ColTab =  TabOP[0].cells.length;
+						//Parcours de lignes
+						for(n=0; n<ligneTab; n++){
+							//Parcours des colonees
+							for(k=0; k<ColTab; k++){
+							
+							//	TabOP[n].cells[k].style.backgroundColor = 'green';
+								TabOP[n].cells[k].onclick = function(){OuvertureFentreOPTrans(this)};
 						
-						if(ligneTab == 0){
-						//nothing
-						}
-						else{
-							var ColTab =  TabOP[0].cells.length;
-							//Parcours de lignes
-							for(n=0; n<ligneTab; n++){
-								//Parcours des colonees
-								for(k=0; k<ColTab; k++){
-								
-									TabOP[n].cells[k].style.backgroundColor = 'green';
-									TabOP[n].cells[k].onclick = function(){OuvertureFentreOPTrans(this)};
-							
-								}
-							
 							}
+						
 						}
+						
 						/////////////////////////// Recupere donnée COmmentaire NRA
 							
 						$.ajax({
@@ -336,11 +331,6 @@ function LeftPartClick(monid)
 					
 					//FIn ajax
                 });
-				
-
-		
-		
-		
 }
 
 
@@ -352,15 +342,14 @@ function LeftPartClick(monid)
 
 function RightPartMouseOver(monid)
 {
+
    //Au passage de la souris
-		
 		var partsArray = monid.id.split('-');
 		var j = partsArray[0];
 		var i = partsArray[1];
-	
 		var CodeNRA = document.getElementById('NRA-'+j).innerHTML;
 		var OPDSLAM = document.getElementsByClassName('EnteteTab')[i].getElementsByTagName('div')[0].innerHTML;
-		
+
         $.ajax({
                     type: "GET",
                     url: "CommentaireDSLAM.php?Nra="+CodeNRA+"&OP="+OPDSLAM+"",
@@ -372,13 +361,11 @@ function RightPartMouseOver(monid)
                     },
                  
                     success:function(data){
+						//	color();
+
 						document.getElementById(monid.id).title = data;
-						
                     }
                 });
-				
-  
-		
 }
 
 function LeftPartMouseOver(monid)
@@ -423,11 +410,10 @@ function OuvertureFentreOPTrans(monid){
 
 	// Traitement pour passer en parametre l'ID OP Trans.
 	
-	var idTrans = monid.className;
 
-	$.ajax({
+	 $.ajax({
                     type: "GET",
-                    url: "fenetre_DetailOPtrans.php?Id="+idTrans+"",
+                    url: "fenetre_DetailOPtrans.php?Type=WDM",
                     dataType : "text",
  
                  
@@ -441,172 +427,93 @@ function OuvertureFentreOPTrans(monid){
 						document.getElementById('FenetreDetailOPtrans').innerHTML = data,
 						$( "#FenetreDetailOPtrans" ).dialog( "open" );	
 						
-						
-						OnChangeCI(idTrans, 'MPG');
-						OnChangeCI(idTrans, 'RPL');
-						OnChangeCI(idTrans, 'Montant');
-						
-						
-						document.getElementById('valideCI').onclick = function() {
-						var Val = 0;	
-							if($(this).is(":checked")) 
-							{
-								
-								alert('home is checked');
-								Val = 1;
-								
-							}
-							else{
-							
-								alert("home isn't checked");
-								val = 0;
-							}
-							
-							$.ajax({
-									type: "POST",
-									url: "ModifBDCI.php?ID="+idTrans+"&Carac=CI&Val="+Val+"",
-									dataType : "text",
-
-								 
-									error:function(msg, string){
-										alert( "Error !: " + string );
-									},
-								 
-									success:function(data){
-										
-										alert(data);
-										
-									}
-							});
-	
-							
-								
-								
-								
-						}
-							
-					}
-						
-				});	
-			}
-
-	
-
-function OnChangeCI(idTrans, CaracCI){
-	
-
-	document.getElementById(CaracCI).onchange = function(){
-		
-	var Valeur = document.getElementById(CaracCI).value;
-;
-	// Update Prog
-	$.ajax({
-				type: "POST",
-				url: "ModifBDCI.php?ID="+idTrans+"&Carac="+CaracCI+"&Val="+Valeur+"",
-				dataType : "text",
-
-			 
-				error:function(msg, string){
-					alert( "Error !: " + string );
-				},
-			 
-				success:function(data){
-					
-					alert(data);
-					
-					if(CaracCI == 'RPL' || CaracCI == 'Montant'){
-
-						document.getElementById(''+CaracCI+'NRA').innerHTML = Valeur;
-					}
-					
-				}
+					}	
 			});
-	
-	};
 
-	
-	
-	
 
 }
+
 
 
 function OuvertureFentreFormulaire(monid){
 	 $.ajax({
-                    type: "GET",
-                    url: "Fenetre_Nouvelle_Op.php?nra="+monid,
-                    dataType : "text",
- 
-                 
-                    error:function(msg, string){
-                        alert( "Error !: " + string );
-                    },
-                 
-                    success:function(data){
-						/////////////////////SI SUCCES ////////////////////
-					document.getElementById('dialog-form').innerHTML = data,
-				
-					$( "#dialog-form" ).dialog( "open" );
-					$(document).ready(function(){
-					// On cache le div a afficher :
-					$("#form_FO").hide();
-					$("#form_FH").hide();
-					$("#form_WDM").hide();
-					//un datepicker pour chaque div
-					$(".DateFO").datepicker({ dateFormat: 'yy-dd-mm' });
-					$(".DateFH").datepicker({ dateFormat: 'yy-dd-mm' });
-					$(".DateWDM").datepicker({ dateFormat: 'yy-dd-mm' });
-					$(function(value) {
-						$("#NomFO").autocomplete({
-							source : 'autocomplet.php?nomfo='+value,
-							minLength: 1,
-							dataType : 'json',
-							error:function(msg, string){
-								alert( "Error !: " + string );
-							},
-							success:function(data){
-								alert ('toto');
-								document.getElementById('NomFO').innerHTML = data;
-							}
-						}); 
-					 });
-					$(function(value) {
-						$("#NomFH").autocomplete({
-							source : 'autocomplet.php?nomfo='+value,
-							minLength: 1,
-							dataType : 'json',
-							error:function(msg, string){
-								alert( "Error !: " + string );
-							},
-							success:function(data){
-								alert ('toto');
-								document.getElementById('NomFH').innerHTML = data;
-							}
-						}); 
-					 });
-					$(function(value) {
-						$("#NomWDM").autocomplete({
-							source : 'autocomplet.php?nomfo='+value,
-							minLength: 1,
-							dataType : 'json',
-							error:function(msg, string){
-								alert( "Error !: " + string );
-							},
-							success:function(data){
-								alert ('toto');
-								document.getElementById('NomWDM').innerHTML = data;
-							}
-						}); 
-					 });					 
-					 
-					});
-
-					}	
+		type: "GET",
+		url: "Fenetre_Nouvelle_Op.php?nra="+monid,
+		dataType : "text",
+		error:function(msg, string){
+			alert( "Error !: " + string );
+		},
+		success:function(data){
+			/////////////////////SI SUCCES ////////////////////
+			document.getElementById('dialog-form').innerHTML = data,
+			$( "#dialog-form" ).dialog( "open" );
+			$(document).ready(function(){
+				// On cache le div
+				$("#form_FO").hide();
+				$("#form_FH").hide();
+				$("#form_WDM").hide();
+				//un datepicker pour chaque div
+				$(".DateFO").datepicker({ dateFormat: 'yy-dd-mm' });
+				$(".DateFH").datepicker({ dateFormat: 'yy-dd-mm' });
+				$(".DateWDM").datepicker({ dateFormat: 'yy-dd-mm' });
+				$(function(value) {
+					$("#NomFO").autocomplete({
+						source : 'autocomplet.php?type=fo&nomfo='+value,
+						minLength: 1,
+						dataType : 'json',
+						error:function(msg, string){
+							alert( "Error !: " + string );
+						},
+						success:function(data){
+							document.getElementById('NomFO').innerHTML = data;
+						}
+					}); 
+				 });
+				$(function(value) {
+					$("#NomFH").autocomplete({
+						source : 'autocomplet.php?nomfh='+value,
+						minLength: 1,
+						dataType : 'json',
+						error:function(msg, string){
+							alert( "Error !: " + string );
+						},
+						success:function(data){
+							document.getElementById('NomFH').innerHTML = data;
+						}
+					}); 
+				 });
+				$(function(value) {
+					$("#NomWDM").autocomplete({
+						source : 'autocomplet.php?nomwdm='+value,
+						minLength: 1,
+						dataType : 'json',
+						error:function(msg, string){
+							alert( "Error !: " + string );
+						},
+						success:function(data){
+							document.getElementById('NomWDM').innerHTML = data;
+						}
+					}); 
+				 });
+				$(function(value) {
+					$("#op_declencheuse").autocomplete({
+						source : 'autocomplet.php?op_declencheuse='+value+'&codenra='+monid,
+						minLength: 1,
+						dataType : 'json',
+						error:function(msg, string){
+							alert( "Error !: " + string );
+						},
+						success:function(data){
+							document.getElementById('op_declencheuse').innerHTML = data;
+						}
+					}); 
+				 });
 			});
-			
+			}
+	});		
 }
- function find_caract_FO(value){
-$(document).ready(function(){
+function find_caract_FO(value){
+	$(document).ready(function(){
 		$.ajax({
 			type: "GET",
 			url: "parametre_operation.php?NomOp=" + value,
@@ -663,3 +570,34 @@ $(document).ready(function(){
 		});
 	});
  }
+function reset_all(){ //A compléter pour que cela fonctionne pour une recherche nra et boucle... fonctionnel uniquement pour un dr sélect en premier !
+$(document).ready(function(){
+			var param1 = document.getElementById("liste_dr").value;
+			$.ajax({
+			type: "GET",
+			url: "tab.php?param1=" + param1,
+			dataType : "html",
+			error:function(msg, string){
+				alert( "Error !: " + string );
+			},
+			success:function(data){
+				document.getElementById('test').innerHTML = data;
+					$('#tbl_MytableID').princeFilter();
+					
+			}
+		});
+					});
+				}
+				/* TRES LENT ... AJOUT/SUPRESSION CLASSE HOVER... TRAITEMENT LONG DU AU NOMBRE DE LIGNE
+function color(){
+var allCells = $("td, th");
+allCells.on("mouseover", function() {
+    var el = $(this),pos = el.index();
+    el.parent().find("th, td").addClass("hover");
+    allCells.filter(":nth-child(" + (pos+1) + ")").addClass("hover");
+  })
+  .on("mouseout", function() {
+    allCells.removeClass("hover");
+  });
+  };
+  */

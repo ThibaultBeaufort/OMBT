@@ -1,5 +1,5 @@
    	<?php 
-	//COMMENTAIRE QUEQUE PART
+	
 	$Nra =$_GET['Nra'];
 	$OP  =$_GET['OP'];
 	$ligne[0] = '12';

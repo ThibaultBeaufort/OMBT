@@ -10,7 +10,7 @@ if (isset($_GET['nra'])){
 		<div id="users-contain" class="ui-widget">
 	<?php
 	
-			$nra =$_GET['nra'];
+			$nra_traite =$_GET['nra'];
 
 		$conn = mysqli_connect("localhost","root","","base_ombt") or die("Erreur connexion BDD" .mysqli_error($conn));
 		$sql = "SELECT IDTrans, TypeTrans, DateTrans, NomOPDslam, RPL, Montant, CI 
@@ -18,10 +18,11 @@ if (isset($_GET['nra'])){
 				WHERE  N.IDNra=DS.IDNra
 				AND DS.IDDslam=OT.IDDslam
 				AND DS.IDDslam=OD.IDDslam
-				AND CONCAT(N.dr,N.codenra) = '$nra';";
+				AND CONCAT(N.dr,N.codenra) = '$nra_traite';";
 		$requete = mysqli_query($conn,$sql) or die('Erreur SQL !<br>'.$sql.'<br>'.mysql_error());	
 	?>
-		<h1>Liste des operations sur le NRA <?php echo $nra ?> : </h1>
+	
+		<h1>Liste des operations sur le NRA <?php echo $nra_traite ?> : </h1>
 		<table id="users" class="ui-widget ui-widget-content">
 			<thead>
 				<tr>
@@ -39,9 +40,9 @@ if (isset($_GET['nra'])){
 					<td class="<?php echo $ligne['IDTrans']; ?>"><?php echo $ligne['TypeTrans'];?></td>
 					<td class="<?php echo $ligne['IDTrans']; ?>"><?php echo $ligne['DateTrans'];?></td>
 					<td class="<?php echo $ligne['IDTrans']; ?>"><?php echo $ligne['NomOPDslam'];?></td>
-					<td id="RPLNRA" class="<?php echo $ligne['IDTrans']; ?>"><?php echo $ligne['RPL'];?></td>
-					<td id="MontantNRA" class="<?php echo $ligne['IDTrans']; ?>"><?php echo $ligne['Montant'];?></td>
-					<td id="ValideCINRA" class="<?php echo $ligne['IDTrans']; ?>"><?php echo $ligne['CI'];?></td>
+					<td class="<?php echo $ligne['IDTrans']; ?>"><?php echo $ligne['RPL'];?></td>
+					<td class="<?php echo $ligne['IDTrans']; ?>"><?php echo $ligne['Montant'];?></td>
+					<td class="<?php echo $ligne['IDTrans']; ?>"><?php echo $ligne['CI'];?></td>
 				</tr>
 				<?php } ?>
 			</tbody>
@@ -52,8 +53,8 @@ if (isset($_GET['nra'])){
 	</div>
 	<div id="commentaire">
 		
-	<label for="ComNra"><p>Commentaire :</p></label>
-	<textarea type="text" name="ComNra" id="ComNra"></textarea>
+	<label for="ComNra">Commentaire :</label>
+	<input type="text" name="ComNra" id="ComNra">
  
 	</div>
 <div id="nouvelle_op">
@@ -63,4 +64,6 @@ if (isset($_GET['nra'])){
 
 
 <!-- Fin fenetre -->
-<?php }?>
+<?php 
+}		
+?>

@@ -5,7 +5,9 @@
 	$conn = mysqli_connect("localhost","root","","base_ombt") or die("Erreur connexion BDD" .mysqli_error($conn));
 
 	if(isset($_GET['param1'])){
+	$dr=$_GET['param1'];
 		switch($_GET['param1']){
+
 			case 'B2':
 				$tri = "and n1.DR ='B2'";
 			break;		
@@ -56,7 +58,8 @@ if (isset($_GET['param1']) || isset($_GET['param2']) || isset($_GET['param3'])){
 		include('tableau.php');
 		include ('fenetre_nra.php');
 		include ('fenetre_OPDslam.php');	
-		include ('Fenetre_Nouvelle_Op.php'); 
-		//include ('fenetre_DetailOPtrans.php');
+		include ('fenetre_DetailOPtrans.php');
+		include ('fenetre_Nouvelle_Op.php');
+
 }
 ?>

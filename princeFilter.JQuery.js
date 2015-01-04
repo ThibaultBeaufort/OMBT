@@ -49,17 +49,17 @@ $(document).on('click', function (e) {
 
                 $(thisElement).find('th').each(function (indx) {
                     $(this).contents().wrap('<div></div>');
+                     var parmIDbtn = 'dv_prncFltr_' + $(thisElement).attr('id') + '_' + indx;
 
                     var thisTH = this;
-                    var parmIDbtn = 'dv_prncFltr_' + $(thisElement).attr('id') + '_' + indx;
 
-                    var btnHTML = "<div style=\"outline:1px solid #CFD2D6;font-size:0pt;min-width:33px;background-color:#EEF3E2 !important;height:13px;margin-top:1px;\">";
-                    btnHTML = btnHTML + "<div id=\"dv_prncFltr_" + $(thisElement).attr("id") + "_" + indx + "\" fltrtxt=\"txt_prncFltr_" + $(thisElement).attr("id") + "_" + indx + "\" style=\"display:inline-block;float:left;font-size:0pt;margin-left:2px;margin-right:2px;padding:0px !important;padding:0px !important;outline:1px solid #4C9ED9;background-color:orange;cursor:pointer;\" onclick=\"prncFltr_ShowFilterBox(event,'" + parmIDbtn + "','" + $(thisElement).attr("id") + "','txt_prncFltr_" + $(thisElement).attr("id") + "_" + indx + "','" + indx + "')\" onmousedown=\"return false;\"><img src=\"data:image/png;base64," + prcn_img_filterFunnel64 + "\" alt=\"^\" /></div>";
-                    btnHTML = btnHTML + "<input id=\"txt_prncFltr_" + $(thisElement).attr("id") + "_" + indx + "\" class=\"clss_prncFltr_" + $(thisElement).attr("id") + "\" type=\"text\" value=\"\" style=\"display:none;\"></input>";
-                    btnHTML = btnHTML + "<img id=\"img_prncFltr_col_" + indx + "_" + $(thisElement).attr("id") + "\" src=\"data:image/png;base64," + prncImgFiltrSortASC + "\" sortOrder=\"\" sortTable=\"" + $(thisElement).attr("id") + "\" class=\"img_prncFltr_SortClss_" + $(thisElement).attr("id") + "\" colIndex=\"" + indx + "\" alt=\"^\" onmousedown=\"return false;\" style=\"cursor:pointer;float:right;\" />";
+                    var btnHTML = "<div style=\"outline:1px solid #CFD2D6;font-size:0pt;min-width:33px;background-color:#EEF3E2 ;height:13px;margin-top:1px;\">";
+                    /* Bouton Filtre */ btnHTML = btnHTML + "<div id=\"dv_prncFltr_" + $(thisElement).attr("id") + "_" + indx + "\" fltrtxt=\"txt_prncFltr_" + $(thisElement).attr("id") + "_" + indx + "\" style=\"display:inline-block;float:left;font-size:0pt;margin-left:2px;margin-right:2px;padding:0px !important;padding:0px !important;outline:1px solid #4C9ED9;background-color:orange;cursor:pointer;\" onclick=\"prncFltr_ShowFilterBox(event,'" + parmIDbtn + "','" + $(thisElement).attr("id") + "','txt_prncFltr_" + $(thisElement).attr("id") + "_" + indx + "','" + indx + "')\" onmousedown=\"return false;\"><img src=\"data:image/png;base64," + prcn_img_filterFunnel64 + "\" alt=\"^\" /></div>";
+                     btnHTML = btnHTML + "<input id=\"txt_prncFltr_" + $(thisElement).attr("id") + "_" + indx + "\" class=\"clss_prncFltr_" + $(thisElement).attr("id") + "\" type=\"text\" value=\"\" style=\"display:none;\"></input>";
+                    /* Bouton Tri*/btnHTML = btnHTML + "<img id=\"img_prncFltr_col_" + indx + "_" + $(thisElement).attr("id") + "\" src=\"data:image/png;base64," + prncImgFiltrSortASC + "\" sortOrder=\"\" sortTable=\"" + $(thisElement).attr("id") + "\" class=\"img_prncFltr_SortClss_" + $(thisElement).attr("id") + "\" colIndex=\"" + indx + "\" alt=\"^\" onmousedown=\"return false;\" style=\"cursor:pointer;float:right;\" />";
                     btnHTML = btnHTML + "</div>";
 
-                    $(thisTH).append(btnHTML);
+                /*Ajout bouton avant texte en tete*/    $(thisTH).prepend(btnHTML);
 
                     // $('#dv_prncFltr_' + $(thisElement).attr('id') + '_' + indx).css('opacity', '0.4'); 
                     // $('#img_prncFltr_col_' + indx + '_' + $(thisElement).attr('id')).css('opacity', '0.3');
@@ -115,7 +115,7 @@ $(document).on('click', function (e) {
                     var fltDV = "<div id=\"dv_prncFltr_FilterSettings\" style=\"position:absolute;z-index:" + highest + ";border:1px solid orange;background-color:white;display:none;\"><div style=\"padding:5px;\"><div style=\"padding:1px;background-color:#EBEBEB;border:1px solid orange;text-align:center;\"><span style=\"font-family:Arial;font-size:small;\">filter:</span><select id=\"cmb_prncFltr_FilterSettings\" style=\"display:none;background-color:#FFFFE1;\"></select><input id=\"txt_prncFltr_FilterSettings\" type=\"text\" style=\"width:100px;padding:1px;\"></input></div></div>";
                     fltDV = fltDV + "<div style=\"padding:3px;text-align:center;background-color:gray;border-top:1px solid #777571;\"><input id=\"btn_prncFltr_FilterSettings_Apply\" ctrlSrc=\"\" type=\"submit\" value=\"Apply Filter\" style=\"border:1px solid #4C9ED9;background-color:#CBE2F3;cursor:pointer;\" /><input id=\"btn_prncFltr_FilterSettings_Reset\" type=\"submit\" value=\"Clear Filter\" style=\"margin-left:5px;border:1px solid red;background-color:#FFBBBB;margin-left:15px;cursor:pointer;\" /></div></div>";
                     $(fltDV).insertAfter($(thisElement));
-					onload="document.getElementById('txt_prncFltr_FilterSettings').focus()"
+					// onload="document.getElementById('txt_prncFltr_FilterSettings').focus()"
 
                     $('#dv_prncFltr_FilterSettings').on('click', function (eva) {
                         eva.preventDefault ? eva.preventDefault() : eva.returnValue = false;
@@ -170,6 +170,7 @@ $(document).on('click', function (e) {
 
                         $('#dv_prncFltr_FilterSettings').css('display', 'none');
                     });
+					
 initFenetre();
 initTab();
 
@@ -263,6 +264,9 @@ function apply_prnc_filter(tblID, currClsss) {
 // initFenetre();
 // initTab();
 };
+
+/* TEST */
+
 
 function prncFltrsortTable(table, col, ASCorDESC) {
     var reverse = ASCorDESC;

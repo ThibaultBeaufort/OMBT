@@ -6,11 +6,15 @@
 	<input type="text" name="Valeur" id="Valeur" class="text ui-widget-content ui-corner-all">
 
 	<label for="OMAR">Commentaire OMAR :</label>
-	<textarea type="text" name="OMAR" id="OMAR" class="text ui-widget-content ui-corner-all"></textarea>
+	<input type="text" name="OMAR" id="OMAR" class="text ui-widget-content ui-corner-all">
 	
 	<label for="Prog">Commentaire Prog :</label>
-	<textarea type="text" name="Prog" id="Prog" ></textarea>
+	<input type="text" name="Prog" id="Prog" class="text ui-widget-content ui-corner-all">
 
-	
-
+	<input type="submit" name="Valider" value="Valider" id="Valider" />
+	<button onclick="close()">Fermer </script>
 </div>
+<script>function close()
+	{
+		window.close();
+	}</script>

@@ -29,14 +29,7 @@
 	font-weight: normal;
 	font-style: normal;
 }
-table{
-  min-width:80%;
-  max-width : 80%;
-    width:80%;
 
-  margin : auto;
-  
-}
 html {
           height: 100%;
 		  width:100%;
@@ -94,18 +87,18 @@ padding: 0;
 margin: 0;
 text-align:center;
 }
+
 .tabs li{ /* onglets alignés */
 float: left;
 width : 25%;
-width:300px;
 }
+
 .tabs label { /* Design onglet */
   display: block;
   cursor: pointer;
   position: relative;
   top: 3px;
   color : rgba(255,102,0,0.5);
-
 }
 .tabs label:hover { /* Onglet survolé */
 background: rgba(255,255,255,0.5);
@@ -126,20 +119,37 @@ display: none;
 text-align: left;
 width: 100%;
 line-height: 140%;
-padding-top: 10px;
-background: rgba(150,150,150,0.5);
-color: white;
+color: black;
 position: absolute;
-top: 53px;
 left: 0;
 box-sizing: border-box;
 }
 
+
+
+/* Accueil */
+.version{
+border : 1px solid orange;
+margin : auto;
+text-align:center;
+}
+
+/* Historique */
+.historique{
+border : 1px solid orange;
+margin : auto;
+text-align:center;
+}
+.historique th{
+border-bottom : 0.5px solid orange;
+}	
+.historique td{
+border-right : 0.5px solid orange;
+}	
 /* Autocomplétion NRA/boucle*/
 .ui-autocomplete { position: absolute; cursor: default; }	
 .ui-menu { /* Menu affiché*/
 	list-style:none;
-
 	float: right;
 	z-index:3;
 	background-color : orange;
@@ -164,6 +174,61 @@ box-sizing: border-box;
 	margin: -1px;
 	color : red;
 }
+
+
+/* RECHERCHE */
+#liste_tri{
+margin-left : 5px;
+}
+#liste_dr{
+margin-bottom : 5px;
+}
+/* TABLEAU */
+
+.tbl_MytableID{
+width : 100%;
+table-layout: auto;
+font-family:"HelveticaNeueThin";
+border-spacing:0;
+}
+.TabGauche{
+word-wrap:normal;
+}
+.EnTeteTab{
+font-family:"HelveticaNeueThin";
+vertical-align : top;
+margin : 0;
+padding: 0;
+word-wrap:normal;
+}
+.tbl_MytableID th{
+border-right : 1px solid orange;
+background-color :  rgba(105,140,150,1);
+border-bottom : 2px solid orange;
+}
+.tbl_MytableID td{
+text-align: center;
+border-bottom : 1px solid orange;
+}
+.tbl_MytableID tr:hover{
+background-color : rgb(255,102,0);
+
+}
+/*.hover {
+  background: yellow;
+}
+*/
+
+.boucle{
+max-width :100px;
+word-wrap:break-word;
+}
+
+
+
+
+
+
 /*NEw Css*/
 
 
